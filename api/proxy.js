@@ -3,25 +3,26 @@ module.exports = async (req, res) => {
     try {
 
         const response = await fetch(
-            'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
+            'https://spin88.sbs/api/webapi/GetMyEmerdList',
             {
                 method:'POST',
                 headers:{
                     'Accept':'application/json, text/plain, */*',
                     'Content-Type':'application/x-www-form-urlencoded'
                 },
-                body:'typeid=1&pageno=0&pageto=10&language=vi'
+                body:
+                'typeid=1&pageno=0&pageto=10&language=vi'
             }
         );
 
-        const text = await response.text();
+        const data = await response.json();
 
         res.setHeader(
-            'Content-Type',
-            'text/plain'
+            'Access-Control-Allow-Origin',
+            '*'
         );
 
-        return res.status(200).send(text);
+        return res.status(200).json(data);
 
     } catch(error){
 
