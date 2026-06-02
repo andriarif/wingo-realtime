@@ -162,15 +162,34 @@ async function loadData(){
 
         let html = '';
 
+        if(games.length === 0){
+
+            html = `
+
+            <tr>
+
+                <td colspan="3">
+                    DATA KOSONG
+                </td>
+
+            </tr>
+
+            `;
+
+        }
+
         games.forEach(item=>{
 
+            const number =
+                item.amount;
+
             const size =
-                item.amount >= 5
+                number >= 5
                 ? 'BIG'
                 : 'SMALL';
 
             const color =
-                item.amount >= 5
+                number >= 5
                 ? 'big'
                 : 'small';
 
@@ -186,7 +205,7 @@ async function loadData(){
 
                 <td>
                     <div class="number ${color}">
-                        ${item.amount}
+                        ${number}
                     </div>
                 </td>
 
