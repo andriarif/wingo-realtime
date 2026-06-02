@@ -1,60 +1,84 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>WINGO REALTIME</title>
+<title>WINGO REALTIME API</title>
 
 <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
     background:#020617;
-    color:white;
     font-family:Arial,sans-serif;
+    color:white;
     padding:15px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
 }
 
 .card{
     background:#0f172a;
     border-radius:20px;
     padding:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 .title{
     font-size:32px;
+    font-weight:bold;
     margin-bottom:15px;
 }
 
 .status{
-    margin-bottom:15px;
-    color:#22c55e;
+    margin-bottom:20px;
     font-size:18px;
+    color:#22c55e;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
+    overflow:hidden;
+    border-radius:10px;
 }
 
 th{
     background:#334155;
-    padding:12px;
+    padding:14px;
+    font-size:18px;
 }
 
 td{
     border:1px solid #334155;
-    padding:12px;
+    padding:14px;
     text-align:center;
 }
 
+.period{
+    font-size:12px;
+    color:#94a3b8;
+}
+
 .number{
-    width:40px;
-    height:40px;
-    line-height:40px;
+    width:45px;
+    height:45px;
+    line-height:45px;
     border-radius:50%;
     display:inline-block;
     font-weight:bold;
+    font-size:20px;
 }
 
 .big{
@@ -65,15 +89,20 @@ td{
     background:#ef4444;
 }
 
-.period{
-    font-size:12px;
+.footer{
+    margin-top:20px;
+    text-align:center;
     color:#94a3b8;
+    font-size:13px;
 }
 
 </style>
+
 </head>
 
 <body>
+
+<div class="container">
 
 <div class="card">
 
@@ -100,6 +129,12 @@ CONNECTING...
 </tbody>
 
 </table>
+
+<div class="footer">
+AUTO REFRESH 5 DETIK
+</div>
+
+</div>
 
 </div>
 
@@ -180,6 +215,7 @@ async function loadData(){
             </tr>
 
             `;
+
         });
 
         document.getElementById(
@@ -191,6 +227,11 @@ async function loadData(){
         ).innerText =
             'LIVE CONNECTED';
 
+        document.getElementById(
+            'status'
+        ).style.color =
+            '#22c55e';
+
     }catch(error){
 
         console.log(error);
@@ -199,6 +240,11 @@ async function loadData(){
             'status'
         ).innerText =
             'API ERROR';
+
+        document.getElementById(
+            'status'
+        ).style.color =
+            '#ef4444';
 
     }
 
