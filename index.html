@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
@@ -137,49 +136,15 @@ AUTO REFRESH 5 DETIK
 
 <script>
 
-const TOKEN =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo4MzgxLCJpZF91c2VyIjoiOTUwNjA1NSIsInBob25lIjoiODk1NDE0MzcwMTYyIiwidG9rZW4iOiIwIiwibmFtZV91c2VyIjoiTWVtYmVyNzk4OTciLCJwYXNzd29yZCI6IiQyYiQwNSRRQUlEQ09WRXZ0M3M2cDFpNy9HVThlakdoU2t0Z0guRUdscWJFQjI3VGdTUFJobWNKMy5xMiIsInBsYWluX3Bhc3N3b3JkIjoiMjIwNDkwQEFyaWYiLCJwbGFpbl9wYXNzd29yZDIiOm51bGwsIm1vbmV5IjowLCJib251c19tb25leSI6IjAuMDAiLCJuZWVkYmV0IjowLCJ0b3RhbF9tb25leSI6MCwicm9zZXNfZjEiOjAsInJvc2VzX2YiOjAsInJvc2VzX3RvZGF5IjowLCJsZXZlbCI6MCwicmFuayI6MCwiY29kZSI6IjM5ODI2OTUwNjA1NSIsImludml0ZSI6IlNQSU44OCIsImN0diI6IjAwMDAwMCIsInZlcmkiOjEsIm90cCI6IjAiLCJpcF9hZGRyZXNzIjoiMTgyLjkuNDguMTk4LCAxNjIuMTU4LjE4OS4yNTQiLCJzdGF0dXMiOjEsInRvZGF5IjoiMjAyNi0wNi0wMlQwMzo1NTo1Ni4wMDBaIiwidGltZSI6IjE3ODAzNzI1NTY0MDUiLCJ0aW1lX290cCI6IjAiLCJ1c2VyX2xldmVsIjowLCJ0cmFuc2Zlcl9tb2RlIjpudWxsLCJkaWFsX2NvZGUiOiIrOTEiLCJhdmF0YXIiOiIzLWFiZmNjMDU2LnBuZyIsImxhbmdfY29kZSI6ImVuIiwidmlwX2xldmVsIjoiMCIsImlzZGVtbyI6MCwid2lubmluZ193YWxsZXRfYmFsYW5jZSI6IjAuMDAiLCJqaWxsaWVfdG90YWxXaW5uaW5nQW1vdW50IjoiMC4wMCIsInRvdGFsV2lubmluZ0Ftb3VudCI6IjAuMDAiLCJzcHJpYmVMYXVuY2hUb2tlbiI6bnVsbCwic21hcnRTb2Z0TGF1bmNoVG9rZW4iOm51bGwsImlub3V0X2JhbGFuY2UiOiIwLjAwMDAiLCJpbm91dF9zdGF0dXMiOiJhY3RpdmUiLCJwcm92aWRlcl9sb2NrZWQiOjAsInZpcF9leHAiOjAsImxhc3RfdG90YWxfZGViaXQiOiIwLjAwIiwiYm9udXNfZWxpZ2libGUiOjEsImJvbnVzX2dpdmVuIjowLCJ3aW5fd2FsbGV0IjoiMC4wMCIsImZyZWVfYm9udXMiOjAsImZpcnN0X2RlcG9zaXQiOjAsImJvbnVzIjowLCJ3ZF9sb2NrZWQiOjAsImxhc3RfaGlzdG9yeV9pZCI6MCwidXNlcl9jb2RlIjpudWxsLCJsYXN0X3dkX3RpbWUiOjB9LCJ0aW1lTm93IjoxNzgwMzY4MjgxODA2LCJpYXQiOjE3ODAzNzI1NTYsImV4cCI6MTc4MDQ1ODk1Nn0.L7_w9P4m-3NWc5tSwWri194SpVi0JLumHJDJ0wtAyss';
-
 async function loadData(){
 
     try{
 
-        const response = await fetch(
-            'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
-            {
+        const response =
+            await fetch('/api/proxy');
 
-                method:'POST',
-
-                mode:'cors',
-
-                credentials:'include',
-
-                headers:{
-
-                    'Accept':
-                    'application/json, text/plain, */*',
-
-                    'Content-Type':
-                    'application/x-www-form-urlencoded',
-
-                    'Authorization':
-                    'Bearer ' + TOKEN,
-
-                    'X-Requested-With':
-                    'XMLHttpRequest',
-
-                    'Referer':
-                    'https://spin88.sbs/wingo/?game_type=1'
-
-                },
-
-                body:
-                'typeid=1&pageno=0&pageto=10&language=vi'
-
-            }
-        );
-
-        const data = await response.json();
+        const data =
+            await response.json();
 
         console.log(data);
 
@@ -251,8 +216,6 @@ async function loadData(){
     }catch(error){
 
         console.log(error);
-
-        alert(error);
 
         document.getElementById(
             'status'
