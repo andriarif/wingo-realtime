@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -140,11 +141,11 @@ async function loadData(){
 
     try{
 
-        const response =
-            await fetch('/api/proxy');
+        const response = await fetch(
+            '/api/proxy'
+        );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         console.log(data);
 
