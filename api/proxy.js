@@ -1,49 +1,35 @@
 export default async function handler(req, res) {
 
-try {
+    try {
 
-    const response = await fetch(
-        'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
-        {
+        const response = await fetch(
+            'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body:
+                    'typeid=1&pageno=0&pageto=10&language=vi'
+            }
+        );
 
-            method: 'POST',
+        const data = await response.json();
 
-            headers: {
+        res.setHeader(
+            'Access-Control-Allow-Origin',
+            '*'
+        );
 
-                'Accept':
-                'application/json, text/plain, */*',
+        return res.status(200).json(data);
 
-                'Content-Type':
-                'application/x-www-form-urlencoded',
+    } catch (error) {
 
-                'X-Requested-With':
-                'XMLHttpRequest'
+        return res.status(500).json({
+            error: error.message
+        });
 
-            },
-
-            body:
-            'typeid=1&pageno=0&pageto=10&language=vi'
-
-        }
-    );
-
-    const data = await response.json();
-
-    res.setHeader(
-        'Access-Control-Allow-Origin',
-        '*'
-    );
-
-    res.status(200).json(data);
-
-} catch (error) {
-
-    res.status(500).json({
-
-        error: error.toString()
-
-    });
-
-}
+    }
 
 }
