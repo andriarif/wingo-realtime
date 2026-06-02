@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>WINGO API REALTIME</title>
+<title>WINGO REALTIME</title>
 
 <style>
 
@@ -19,12 +19,10 @@ body{
     background:#0f172a;
     border-radius:20px;
     padding:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.3);
 }
 
 .title{
     font-size:32px;
-    font-weight:bold;
     margin-bottom:15px;
 }
 
@@ -37,14 +35,11 @@ body{
 table{
     width:100%;
     border-collapse:collapse;
-    overflow:hidden;
-    border-radius:10px;
 }
 
 th{
     background:#334155;
     padding:12px;
-    font-size:18px;
 }
 
 td{
@@ -87,7 +82,7 @@ WINGO API REALTIME
 </div>
 
 <div id="status" class="status">
-Connecting...
+CONNECTING...
 </div>
 
 <table>
@@ -114,7 +109,32 @@ async function loadData(){
 
     try{
 
-        const response = await fetch('/api/proxy');
+        const response = await fetch(
+            'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
+            {
+
+                method:'POST',
+
+                mode:'cors',
+
+                headers:{
+
+                    'Accept':
+                    'application/json, text/plain, */*',
+
+                    'Content-Type':
+                    'application/x-www-form-urlencoded',
+
+                    'X-Requested-With':
+                    'XMLHttpRequest'
+
+                },
+
+                body:
+                'typeid=1&pageno=0&pageto=10&language=vi'
+
+            }
+        );
 
         const data = await response.json();
 
