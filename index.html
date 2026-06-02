@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WINGO REALTIME</title>
+
+<style>
+
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    padding:15px;
+}
+
+.card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
+}
+
+.title{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #334155;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#334155;
+}
+
+.big{
+    background:#22c55e;
+    padding:8px 12px;
+    border-radius:50%;
+}
+
+.small{
+    background:#ef4444;
+    padding:8px 12px;
+    border-radius:50%;
+}
+
+.status{
+    margin-bottom:10px;
+    color:#22c55e;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="title">
+WINGO API REALTIME
+</div>
+
+<div id="status" class="status">
+Connecting...
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Period</th>
+<th>Number</th>
+<th>Size</th>
+</tr>
+</thead>
+
+<tbody id="result">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadData(){
+
+    try{
+
+        const response = await fetch(
+            'https://spin88.sbs/api/webapi/GetNoaverageEmerdList',
+            {
+                method:'POST',
+
+                headers:{
+                    'Accept':'application/json, text/plain, */*',
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+
+                body:new URLSearchParams({
+                    typeid:'1',
+                    pageno:'0',
+                    pageto:'10',
+                    language:'vi'
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+        const games =
+            data.data.gameslist;
+
+        let html = '';
+
+        games.forEach(item=>{
+
+            let size =
+                item.amount >= 5
+                ? 'BIG'
+                : 'SMALL';
+
+            let color =
+                item.amount >= 5
+                ? 'big'
+                : 'small';
+
+            html += `
+
+            <tr>
+
+                <td>
+                    ${item.period}
+                </td>
+
+                <td>
+                    <span class="${color}">
+                        ${item.amount}
+                    </span>
+                </td>
+
+                <td>
+                    ${size}
+                </td>
+
+            </tr>
+
+            `;
+        });
+
+        document.getElementById(
+            'result'
+        ).innerHTML = html;
+
+        document.getElementById(
+            'status'
+        ).innerText =
+            'LIVE CONNECTED';
+
+    }catch(error){
+
+        console.log(error);
+
+        document.getElementById(
+            'status'
+        ).innerText =
+            'API ERROR';
+
+    }
+
+}
+
+loadData();
+
+setInterval(loadData,5000);
+
+</script>
+
+</body>
+</html>
